@@ -1,0 +1,31 @@
+{% extends "layout.html"%}
+
+{% block pageTitle %}Home{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/generalstyle.css') }}"/>
+<script src="{{ url_for('static',filename='js/chatroom.js') }}"/></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+{% endblock %}
+{% block body %}
+<h1> Welcome to chatroom {{ session['username']}}</h1>
+<h2> Chats </h2>
+<p1>
+	<ul id="chats">
+		{% for chat in chats %}
+				<li>
+						{{ chat[0] }} wrote {{ chat[1] }}
+				</li>
+		{% endfor %}
+	</ul>
+</p1>
+<p1>
+
+<input id="chat_content" name="chat_content" type='text' placeholder="Chat!">
+<button id="add_chat" name="add_chat">Chat!</button>
+
+	<form id = "backform" method = "POST" action = "/welcome">
+		<input name='btn' type='Submit' value="Back to mainpage">
+	</form>
+
+</p1>
+{% endblock %}
